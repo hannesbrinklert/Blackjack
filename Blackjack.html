@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta charset="utf-8">
+   <title> HanensBrinklert_HaMaBlackjack </title>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Permanent+Marker">
+   <link rel="stylesheet" href="Blackjack_stylesheet.css">
+   <script src="Blackjack_script.js"></script>
+</head>
+
+<body>
+
+   <div class="center-game">
+
+      <div id="infobox">
+         <p id="infoToUser">&nbsp;</p>
+      </div>
+
+      <div id="cardCountingBox">0</div>
+
+      <div id="numbers">
+         <p>Money: <span id="money"></span></p>
+         <p>Level: <span id="level"></span></p>
+         <p>Next lvl in: <span id="nextLvl"></span></p>
+      </div>
+
+      <div id="playerValue">
+         <p>Player value: <span id="player"></span></p>
+      </div>
+
+      <div id="dealerValue">
+         <p>Dealer value: <span id="dealer"></span></p>
+      </div>
+
+      <img src="Cards/backside.png" onclick="getNewCard()" id="kortlek" class="cards" title="Take a card"
+         style="top: 310px; left: 640px;" draggable="false" />
+
+      <table id="knappar">
+         <tr>
+            <td> <input type="number" placeHolder=" Betsize" id="betSize" step="1" min="1" title="Place your bet here">
+            </td>
+         </tr>
+         <tr>
+            <td><button class="kontroll" id="buttonZero" onclick="newHand()" title="Get start cards"> Deal </button>
+            </td>
+         </tr>
+         <tr>
+            <td><button class="kontroll" id="buttonOne" onclick="resetBet()" title="Reset your bet"> Reset Bet </button>
+            </td>
+         </tr>
+         <tr>
+            <td> <button class="kontroll" id="buttonTwo" onclick="dealerTurn()" title="End your turn" disabled> Stand
+               </button> </td>
+         </tr>
+         <tr>
+            <td> <button class="kontroll" id="buttonThree" onclick="newGame(false)" title="Restart the game"> Restart
+                  game </button> </td>
+         </tr>
+      </table>
+
+      <table id="picMarker">
+         <tr>
+            <td><img src="andraBilder/white_marker.png" id="markerOne" class="picturesMarkers" onclick="picBet(1)"
+                  title="Add one to your bet" draggable="false" /></td>
+         </tr>
+
+         <tr>
+            <td><img src="andraBilder/blue_marker.png" id="markerTwo" class="picturesMarkers" onclick="picBet(50)"
+                  title="Add 50 to your bet" draggable="false" /></td>
+         </tr>
+
+         <tr>
+            <td><img src="andraBilder/red_marker.png" id="markerThree" class="picturesMarkers" onclick="picBet(100)"
+                  title="Add 100 to your bet" draggable="false" /></td>
+         </tr>
+      </table>
+
+      <img class="cards" id="kort10" draggable="false" />
+      <img class="cards" id="kort9" draggable="false" />
+      <img class="cards" id="kort8" draggable="false" />
+      <img class="cards" id="kort7" draggable="false" />
+      <img class="cards" id="kort6" draggable="false" />
+      <img class="cards" id="kort5" draggable="false" />
+      <img class="cards" id="kort4" draggable="false" />
+      <img class="cards" id="kort3" draggable="false" />
+      <img class="cards" id="kort2" draggable="false" />
+      <img class="cards" id="kort1" draggable="false" />
+      <img class="cards" id="kort0" draggable="false" />
+
+      <img class="cards" id="dealerKort10" draggable="false" />
+      <img class="cards" id="dealerKort9" draggable="false" />
+      <img class="cards" id="dealerKort8" draggable="false" />
+      <img class="cards" id="dealerKort7" draggable="false" />
+      <img class="cards" id="dealerKort6" draggable="false" />
+      <img class="cards" id="dealerKort5" draggable="false" />
+      <img class="cards" id="dealerKort4" draggable="false" />
+      <img class="cards" id="dealerKort3" draggable="false" />
+      <img class="cards" id="dealerKort2" draggable="false" />
+      <img class="cards" id="dealerKort1" draggable="false" />
+      <img class="cards" id="dealerKort0" draggable="false" />
+
+      <img id="arrowOne" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowTwo" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowThree" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowFour" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowFive" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowSix" src="andraBilder/arrow1.png" class="arrow" draggable="false" />
+      <img id="arrowSeven" src="andraBilder/arrow1.png" class="arrow" draggable="false" />
+      <img id="arrowEight" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowNine" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+      <img id="arrowTen" src="andraBilder/arrow1.png" class="arrow" draggable="false" />
+      <img id="arrowEleven" src="andraBilder/arrow0.png" class="arrow" draggable="false" />
+
+      <div id="boxZero" class="box">
+         <p>In Blackjack you play against the dealer. In the beginning of each round you start by betting. Then you will
+            receive two cards, as well as the dealer. But, you only see one card of the dealer until the dealer’s turn.
+            The point of Blackjack is to get 21 with your cards. However, you do not want to have over 21. The cards in
+            Blackjack have the value of its number. Except Ace which can have two values, one and eleven. Jack, Queen
+            and King have the value of ten. If both you and the dealer have a value of under 21, the one who wins is the
+            one closest to 21. However, if the value is the same the dealer wins. When you lose against the dealer you
+            lost money that you betted. If you win you will receive twice the value of your bet. However, if you have 21
+            in the start it is called Blackjack and then your receive three times the value of your bet and new round is
+            started.</p>
+         <p> <br />HaMaBlackjack is made by Hannes Brinklert and Martin Gustafsson.</p>
+      </div>
+
+      <div id="boxOne" class="box">
+         <p>You start the game by writing in your bet.</p>
+      </div>
+
+      <div id="boxTwo" class="box">
+         <p>You can also click on the markers to choose how much you want to bet.</p>
+      </div>
+
+      <div id="boxThree" class="box">
+         <p>Click here to reset your bet.</p>
+      </div>
+
+      <div id="boxFour" class="box">
+         <p>When you have decided your bet, you click here to get cards.</p>
+      </div>
+
+      <div id="boxFive" class="box">
+         <p>Here are your cards or here will your cards be. To the left you can see the value of your cards.</p>
+      </div>
+
+      <div id="boxSix" class="box">
+         <p>Here are the dealer's cards or here will the dealer's cards be. To the left you can see the dealer's value
+            of its cards.</p>
+      </div>
+
+      <div id="boxSeven" class="box">
+         <p>Here is a number that tells you what cards are left in the deck. If the number is positive there are more
+            high cards than low cards in the deck and if the number i negative there are more low cards than high cards.
+            Ex. 3 means that there are 3 more high card than low cards. (low cards are cards 2-6 and high cards are
+            10-Ace)
+            If the number is positive you have a bigger chance of winning
+            If the number is negative you have a lower chance of winning.
+         </p>
+      </div>
+
+      <div id="boxEight" class="box">
+         <p>Click on the card back to take a card.</p>
+      </div>
+
+      <div id="boxNine" class="box">
+         <p>Click on this button to end your turn and let the dealer play.</p>
+      </div>
+
+      <div id="boxTen" class="box">
+         <p>In this box you can see your money, level and how much money to next level.</p>
+      </div>
+
+      <div id="boxEleven" class="box">
+         <p>On this button you reset the game.</p>
+      </div>
+
+   </div>
+
+   <button id="boxButton" onclick="nextPage()" title="Get more information">Next</button>
+   <div id="popUp" onclick="closePopUp()"></div>
+   <span onclick="infoZero()" id="infoButton" class="glyphicon glyphicon-info-sign"
+      title="Information about the game"></span>
+   <span onclick="closePopUp()" id="close" title="Close popup" class="glyphicon glyphicon-remove-sign"></span>
+
+   <div id="popUp2" onclick="closePopUp2"></div>
+   <p id="popUpText"></p>
+   <button class="kontroll" id="restartButton" onclick="newGame(true)">Restart the game</button>
+
+</body>
+
+</html>
