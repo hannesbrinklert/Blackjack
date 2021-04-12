@@ -4,5 +4,7 @@ I wrote this game in 2017 together with my classmate Martin Gustafsson in a proj
 
 __Please check it the game__ [here](https://hannesbrinklert.github.io/Blackjack/)
 
+![blackjack_example](https://user-images.githubusercontent.com/57961457/114443378-e820d980-9bcd-11eb-9d43-837c004bcf54.PNG)
+
 ## Technologies 🖱️
 HTML, CSS and JavaScript
